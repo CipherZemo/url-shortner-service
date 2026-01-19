@@ -1,4 +1,4 @@
-# URL Shortener Service
+# URL Shortener Service🔗
 This project is an advanced, full-stack URL Shortener service, built using the MERN stack (MongoDB, Express.js, React, Node.js). It goes beyond a basic tool by incorporating a complete user authentication system and a personal dashboard. The core functionality allows any visitor to submit a long URL and receive a shortened, unique link. When this short link is used, the service redirects the user to the original destination while invisibly tracking the number of clicks.
 
 ## Key Enhancements: 
