@@ -23,8 +23,17 @@ const shortenUrl = async (req, res) => {
         const urlCode = nanoid(7);
 
         const shortUrl = `${process.env.BASE_URL}/${urlCode}`;
-        url = await Url.create({ longUrl, shortUrl, urlCode });
+        const newUrlData = {
+            longUrl,
+            shortUrl,
+            urlCode,
+        };
+        if (req.user) {
+            newUrlData.user = req.user.id;
+        }
 
+        url = await Url.create({newUrlData});
+        //We pass our constructed data object to Url.create(). Mongoose is smart; if the user property exists on the object, it will save it to the document. If it doesn't, it will be omitted, which is exactly what we want for an anonymous guest.
         res.status(201).json({ success: true, data: url });
     } catch (err) {
         console.error('Database error:', err);
@@ -41,7 +50,7 @@ const redirectToUrl = async (req, res) => {
             url.clicks++;
             await url.save();
             return res.redirect(301, url.longUrl);// We are specifying a 301 status for a permanent redirect.
-        } else {           
+        } else {
             return res.status(404).json({ success: false, error: 'No URL found' });
         }
     } catch (err) {
