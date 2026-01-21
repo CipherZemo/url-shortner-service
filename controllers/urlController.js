@@ -1,12 +1,6 @@
-// controllers/urlController.js
+
 const Url = require('../models/Url');
 const validUrl = require('valid-url'); //library to validate the format of the incoming URL
-
-/**
- * @desc    This function will be responsible for creating a new short URL.
- * @route   POST /api/shorten
- * @access  Public
- */
 
 const shortenUrl = async (req, res) => {
     const { longUrl } = req.body;
@@ -15,7 +9,6 @@ const shortenUrl = async (req, res) => {
     if (!longUrl) {
         return res.status(400).json({ success: false, error: 'Please provide a URL' });
     }
-
     if (!validUrl.isUri(longUrl)) {
         return res.status(400).json({ success: false, error: 'Invalid URL format provided' });
     } //url validation
@@ -40,7 +33,24 @@ const shortenUrl = async (req, res) => {
 
 };
 
+const redirectToUrl = async (req, res) => {
+    try {
+        const url = await Url.findOne({ urlCode: req.params.code });
+
+        if (url) {
+            url.clicks++;
+            await url.save();
+            return res.redirect(301, url.longUrl);// We are specifying a 301 status for a permanent redirect.
+        } else {           
+            return res.status(404).json({ success: false, error: 'No URL found' });
+        }
+    } catch (err) {
+        console.error('Server error on redirect:', err);
+        res.status(500).json({ success: false, error: 'Internal Server Error' });
+    }
+}
+
 
 module.exports = {
-    shortenUrl,
+    shortenUrl, redirectToUrl,
 };
