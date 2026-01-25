@@ -1,4 +1,3 @@
-
 const Url = require('../models/Url');
 const validUrl = require('valid-url'); //library to validate the format of the incoming URL
 
@@ -14,7 +13,7 @@ const shortenUrl = async (req, res) => {
     } //url validation
 
     try {
-        let url = await Url.findOne({ longUrl: longUrl }); //1st one is the schema field,2nd one is here's variable 
+        let url = await Url.findOne({ longUrl: longlink }); //1st one is the schema field,2nd one is here's variable 
         if (url) {
             return res.status(200).json({ success: true, data: url });
         }
@@ -58,7 +57,6 @@ const redirectToUrl = async (req, res) => {
         res.status(500).json({ success: false, error: 'Internal Server Error' });
     }
 }
-
 
 module.exports = {
     shortenUrl, redirectToUrl,
