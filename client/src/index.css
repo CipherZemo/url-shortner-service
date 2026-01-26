@@ -1,0 +1,5 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* changed the language model to tailwind css in vscode settings(Ctrl+Shift+P -> Change Language Mode -> Tailwind css). Warning occurs because your editor's default CSS linter doesn't recognize Tailwind's custom at-rules */
