@@ -31,6 +31,9 @@ const Navbar = () => {
         <ul className="flex gap-4 items-center">
           {isAuthenticated ? (
             <>
+            <li>
+                <Link to="/" className="hover:text-blue-300">Home</Link>
+              </li>
               <li>
                 <Link to="/dashboard" className="hover:text-blue-300">Dashboard</Link>
               </li>
