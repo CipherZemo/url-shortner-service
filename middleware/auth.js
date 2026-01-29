@@ -4,7 +4,7 @@ const auth = (req, res, next) => {
 
     const token = req.header('x-auth-token');
     if (!token) {
-        return next();;
+        return next();
     }
 
     try {
