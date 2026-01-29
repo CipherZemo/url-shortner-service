@@ -2,7 +2,8 @@ import axios from 'axios';
 const API_URL = '/api/links/';
 
 export const getUserLinks = async (token) => {
-    const config = { headers: { Authorization: `Bearer ${token}` } };
+        const config = { headers: { 'x-auth-token': token }  // Backend expects this header name 
+    };
 
     try {
         const response = await axios.get(API_URL + 'my-links', config);
