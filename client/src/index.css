@@ -1,5 +1,19 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-/* changed the language model to tailwind css in vscode settings(Ctrl+Shift+P -> Change Language Mode -> Tailwind css). Warning occurs because your editor's default CSS linter doesn't recognize Tailwind's custom at-rules */
+
+/* Fade-in animation for alerts */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-out;
+}
