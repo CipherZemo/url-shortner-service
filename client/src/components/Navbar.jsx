@@ -2,49 +2,66 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
 const Navbar = () => {
-    const { isAuthenticated, logout } = useAuth();
-    const navigate = useNavigate();
+  const { isAuthenticated, logout } = useAuth();
+  const navigate = useNavigate();
 
-    const handleLogout = () => {
-        logout();
-        navigate('/login');
-    };
+  const handleLogout = () => {
+    logout();
+    navigate('/login');
+  };
 
-    return (
-    // - p-4: Applies 1rem of padding on all sides.
-    // - shadow-md: Adds a medium box shadow for depth.
-    <nav className="bg-gray-800 text-white p-4 shadow-md">
-      {/* div: A container to hold the content, centered with a max-width */}
-      {/* - container mx-auto: Centers the content and applies max-width. */}
-      {/* - flex justify-between items-center: The core of our flexbox layout. */}
-      <div className="container mx-auto flex justify-between items-center">
-        {/* div: The brand/logo section */}
-        {/* - text-2xl: Sets a larger font size. */}
-        {/* - font-bold: Makes the font bold. */}
-        <div className="text-2xl font-bold">
-          <Link to="/">Short.ly</Link>
-        </div>
-        
-        {/* ul: The list of navigation links */}
-        {/* - flex gap-4 items-center: Lays out the links horizontally with 1rem of space. */}
-        <ul className="flex gap-4 items-center">
+  return (
+    <nav className="bg-white border-b border-slate-200 shadow-sm sticky top-0 z-50">
+      <div className="container mx-auto px-4 py-3 flex justify-between items-center">
+
+        {/* Logo */}
+        <Link to="/" className="text-xl font-extrabold text-slate-900">
+          Short<span className="text-blue-600">.</span>ly
+        </Link>
+
+        {/* Nav links */}
+        <ul className="flex gap-2 items-center">
+          {/* Shorten link — always visible */}
+          <li>
+            <Link
+              to="/shorten"
+              className="inline-flex items-center gap-1.5 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm px-4 py-2 rounded-lg transition-colors"
+            >
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+              </svg>
+              Shorten
+            </Link>
+          </li>
+
           {isAuthenticated ? (
             <>
-            <li>
-                <Link to="/" className="hover:text-blue-300">Home</Link>
+              <li>
+                <Link to="/dashboard" className="text-sm font-semibold text-slate-600 hover:text-blue-600 px-3 py-2 rounded-lg transition-colors">
+                  Dashboard
+                </Link>
               </li>
               <li>
-                <Link to="/dashboard" className="hover:text-blue-300">Dashboard</Link>
-              </li>
-              <li>
-                <button onClick={handleLogout} className="bg-blue-500 hover:bg-blue-600 px-3 py-1 rounded-md text-sm"> Logout
+                <button
+                  onClick={handleLogout}
+                  className="text-sm font-semibold text-slate-500 hover:text-red-500 px-3 py-2 rounded-lg transition-colors"
+                >
+                  Logout
                 </button>
               </li>
             </>
           ) : (
             <>
-              <li><Link to="/login" className="hover:text-blue-300">Login</Link></li>
-              <li><Link to="/register" className="hover:text-blue-300">Register</Link></li>
+              <li>
+                <Link to="/login" className="text-sm font-semibold text-slate-600 hover:text-blue-600 px-3 py-2 rounded-lg transition-colors">
+                  Login
+                </Link>
+              </li>
+              <li>
+                <Link to="/register" className="text-sm font-semibold text-slate-600 hover:text-blue-600 px-3 py-2 rounded-lg transition-colors">
+                  Register
+                </Link>
+              </li>
             </>
           )}
         </ul>
