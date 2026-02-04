@@ -10,7 +10,7 @@ A feature-rich, full-stack URL shortening service built with the MERN stack (Mon
 
 ### Screenshot / Demo GIF
 
-![A GIF or screenshot showing the application in action. For example, a user shortening a URL and then seeing it on their dashboard.](placeholder.gif)
+![Short.ly Demo](assets/readme-vdogif.gif)
 
 *A short GIF demonstrating the core user flow: shortening a URL, logging in, and viewing the link on the personal dashboard.*
 
