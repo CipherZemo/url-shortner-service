@@ -37,7 +37,7 @@ const LoginPage = () => {
       if (response.token) {
         login(response.token);
         console.log('Token stored in localStorage successfully!');
-        navigate('/');
+        navigate('/shorten');
 
       } else {
         setError('Login successful, but no token was provided.');
